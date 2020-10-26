@@ -1,0 +1,319 @@
+$font-stack: Avant Garde, Avantgarde, Century Gothic, CenturyGothic, AppleGothic,
+  sans-serif;
+$primaryColor: #f5c541;
+$textColor: #313131;
+$textColorLight: #f0f0f0;
+$cardBackground: #ffffff;
+$wrapperWidth: 1000px;
+$shadowColor: rgba(0, 0, 0, 0.2);
+$btnColorPrimary: #313131;
+
+@mixin containerGap {
+  margin-top: 30px;
+}
+
+@mixin colorPicker {
+  margin-top: 0px;
+  border: none;
+  position: relative;
+  width: 100%;
+  display: block;
+  height: 40px;
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1200px) and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 991) and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mobile() {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin cardShadow($elevation: 10px) {
+  box-shadow: 10px 10px $elevation $shadowColor;
+}
+
+@mixin gridThree($gap: 20px) {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "label input button";
+  grid-gap: $gap;
+  align-items: center;
+  @include mobile() {
+    grid-template-areas:
+      "label input"
+      "button button";
+    grid-template-columns: auto 1fr;
+    > button {
+      grid-column: span 2;
+    }
+  }
+}
+
+%btn-style {
+  border: 0;
+  padding: 15px 100px;
+  margin: 5px 0px;
+  text-transform: uppercase;
+  color: $textColorLight;
+  background-color: $btnColorPrimary;
+  cursor: pointer;
+}
+
+%btn-style-light {
+  @extend %btn-style;
+  background-color: lighten($btnColorPrimary, 20%);
+}
+
+* {
+  font-family: $font-stack;
+  color: $textColor;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: $primaryColor;
+}
+
+.wrapper {
+  @include cardShadow(50px);
+  background-color: $cardBackground;
+  margin: 20px auto;
+  width: 80%;
+  padding: 50px;
+  max-width: 1000px;
+  .form-container {
+    @include containerGap();
+    @include gridThree();
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+
+    & > input {
+      padding: 12px;
+    }
+
+    & > label {
+      align-self: center;
+    }
+
+    & > button {
+      @extend %btn-style;
+      background-color: $btnColorPrimary;
+    }
+  }
+
+  .controls {
+    margin-top: 50px;
+
+    .lightSwitch {
+      @include containerGap();
+
+      &__controls {
+        @extend %btn-switch;
+        @include containerGap();
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .profiles {
+      @include containerGap();
+
+      &__controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-gap: 20px;
+        margin-top: 15px;
+        .card-profile {
+          @extend %card;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+          grid-gap: 20px;
+        }
+      }
+    }
+
+    .brightness {
+      @include containerGap();
+
+      &__profile {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-gap: 20px;
+
+        &__card {
+          @extend %card;
+
+          > h4 {
+            font-size: 1em;
+            font-weight: bold;
+          }
+          > img {
+            width: 50px !important;
+            padding: 15px 0px 15px 15px !important;
+          }
+        }
+      }
+      &__controls {
+        @include gridThree();
+        @include containerGap();
+        label {
+          width: 100px;
+        }
+        > button {
+          @extend %btn-style-light;
+        }
+      }
+    }
+
+    .color {
+      @include containerGap();
+
+      &__controls {
+        @include gridThree();
+
+        > input {
+          @include colorPicker;
+        }
+
+        > button {
+          @extend %btn-style-light;
+        }
+      }
+
+      &__profiles {
+        @include containerGap();
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        justify-items: center;
+
+        &__card {
+          @extend %color-card;
+        }
+      }
+    }
+  } //end-controls
+} //end-wrapper
+
+%color-card {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 20px #00000022;
+  cursor: pointer;
+  transition: 0.2s transform ease-in;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+%btn-switch {
+  .label {
+    cursor: pointer;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 12px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #2196f3;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+}
+
+%card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 20px;
+  align-items: center;
+  background-color: #c7d0c8;
+  transition: 0.2s all;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px inset rgba(0, 0, 0, 0);
+
+  &:hover {
+    background-color: lighten($color: #c7d0c8, $amount: 10);
+    border: 1px inset rgba(0, 0, 0, 0.37);
+  }
+
+  > img {
+    padding: 20px;
+    padding-right: 0px;
+    width: 80px;
+  }
+  > div {
+    p {
+      margin-top: 8px;
+    }
+  }
+}

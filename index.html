@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Light House v1</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>House Light Control</h1>
+      <!-- <hr /> -->
+      <!-- <div class="form-container">
+        <label for="ipAddr">Enter IP Address</label>
+        <input type="text" name="ipAddr" id="ipAddr" />
+        <button>Connect</button>
+      </div> -->
+      <div class="controls">
+        <div class="lightSwitch">
+          <h3>Light Switch</h3>
+          <hr />
+          <div class="lightSwitch__controls">
+            <label class="switch lblLightsOn">
+              <input type="checkbox" class="chkLightsOn" name="chkLightsOn" />
+              <span class="slider round"></span>
+            </label>
+            <span class="label"> Lights Off</span>
+          </div>
+        </div>
+        <div class="profiles">
+          <h3>Predefined Profiles</h3>
+          <hr />
+          <div class="profiles__controls">
+            <div class="card-profile" data-mode="morning">
+              <img src="img/icon-morning.png" alt="morning light" />
+              <div class="card-profile__details">
+                <h4>Morning Light</h4>
+                <p>White with 100% brightness</p>
+              </div>
+            </div>
+            <div class="card-profile" data-mode="night">
+              <img src="img/icon-night.png" alt="night light" />
+              <div class="card-profile__details">
+                <h4>Night Time</h4>
+                <p>Yellow Light with 10% brightness</p>
+              </div>
+            </div>
+            <div class="card-profile" data-mode="movie">
+              <img src="img/icon-gametime.png" alt="morning light" />
+              <div class="card-profile__details">
+                <h4>Movie Time</h4>
+                <p>Blue Light with 70% brightness</p>
+              </div>
+            </div>
+            <div class="card-profile" data-mode="half">
+              <img src="img/icon-half.png" alt="morning light" />
+              <div class="card-profile__details">
+                <h4>Half Brightness</h4>
+                <p>White Light adjusted to 50% brightness</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brightness">
+          <h3>Light Brightness</h3>
+          <hr />
+          <div class="brightness__profile">
+            <div class="brightness__profile__card" data-brightness="10">
+              <img src="img/icon-half.png" />
+              <h4>10%</h4>
+            </div>
+            <div class="brightness__profile__card" data-brightness="30">
+              <img src="img/icon-half.png" />
+              <h4>30%</h4>
+            </div>
+            <div class="brightness__profile__card" data-brightness="50">
+              <img src="img/icon-half.png" />
+              <h4>50%</h4>
+            </div>
+            <div class="brightness__profile__card" data-brightness="70">
+              <img src="img/icon-half.png" />
+              <h4>70%</h4>
+            </div>
+            <div class="brightness__profile__card" data-brightness="100">
+              <img src="img/icon-half.png" />
+              <h4>100%</h4>
+            </div>
+          </div>
+          <div class="brightness__controls">
+            <label for="brightnessLevel">Level: 100%</label>
+            <input
+              type="range"
+              name="brightnessLevel"
+              class="brightnessLevel"
+              id="brightnessLevel"
+              min="1"
+              max="100"
+              value="100"
+            />
+            <button class="brightness__profile__button">Apply</button>
+          </div>
+        </div>
+        <div class="color">
+          <h3>Light Color</h3>
+          <hr />
+          <div class="color__profiles">
+            <div
+              class="color__profiles__card"
+              data-hex-value="#0008ff"
+              data-hexcolor="0+8+255"
+              style="background-color: #0008ff"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#00f5ff"
+              data-hexcolor="0+245+255"
+              style="background-color: #00f5ff"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#ff00ff"
+              data-hexcolor="255+0+255"
+              style="background-color: #ff00ff"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#ff0000"
+              data-hexcolor="255+0+0"
+              style="background-color: #ff0000"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#00ff00"
+              data-hexcolor="0+255+0"
+              style="background-color: #00ff00"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#ffff00"
+              data-hexcolor="255+255+0"
+              style="background-color: #ffff00"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#ff4d00"
+              data-hexcolor="255+77+0"
+              style="background-color: #ff4d00"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#ffffff"
+              data-hexcolor="255+255+255"
+              style="background-color: #ffffff"
+            ></div>
+            <div
+              class="color__profiles__card"
+              data-hex-value="#ff7b00"
+              data-hexcolor="255+122+0"
+              style="background-color: #ff7b00"
+            ></div>
+          </div>
+          <div class="color__controls">
+            <label for="colorLabel">Selected Color: #FFFFFF</label>
+            <input
+              type="color"
+              name="color"
+              class="color_input"
+              id="color"
+              min="1"
+              max="100"
+              value="100"
+            />
+            <button>Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="js/function.js"></script>
+</html>
